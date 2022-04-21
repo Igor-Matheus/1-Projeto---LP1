@@ -1,2 +1,1 @@
-Projeto da disciplina de Linguagem de Programação I.
-"Isso é uma alteração".
+UFPB - Centro de Informática - Curso: Engenharia da Computação. Projeto da disciplina de Linguagem de Programação I.
