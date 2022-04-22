@@ -3,6 +3,8 @@
 
 #include <string>
 
+#define NUM_LINHAS 6
+
 using namespace std;
 
 class Funcionarios{
@@ -10,8 +12,8 @@ class Funcionarios{
         Funcionarios();
 
         //Para não precisar fazer os sets
-        Funcionarios(string nome, string data, string endereco,
-        double salario, string telefone, string designacao);
+        Funcionarios(string codigo, string nome, string data,
+        string endereco, double salario, string telefone, string designacao);
         
         //Destrutor
         virtual ~Funcionarios();
@@ -19,8 +21,9 @@ class Funcionarios{
         //Quais seriam virtuais ou virtuais puros?
         void Adicionar();
         void Excluir();
-        void Modificar();
+        virtual void Modificar(int numDesignacao);
 
+        string getCodigo();
         string getNome();
         string getData();
         string getEndereco();
@@ -38,6 +41,7 @@ class Funcionarios{
         void imprimeFolhaSalarialEmpresa();
 
     protected: //ou é melhor private?
+        string codigo;
         string nome;
         string data;
         string endereco;

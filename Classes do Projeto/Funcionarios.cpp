@@ -1,6 +1,10 @@
+#include <iostream>
+#include <string>
+#include <fstream>
 #include "Funcionarios.h"
 
 Funcionarios::Funcionarios(){
+    codigo = "NaN";
     nome = "NaN";
     data = "NaN";
     endereco = "NaN";
@@ -9,9 +13,10 @@ Funcionarios::Funcionarios(){
     designacao = "NaN";
 }
 
-Funcionarios::Funcionarios(string nome, string data, string endereco,
-double salario, string telefone, string designacao){
+Funcionarios::Funcionarios(string codigo, string nome, string data,
+string endereco, double salario, string telefone, string designacao){
 
+    this -> codigo = codigo;
     this -> nome = nome;
     this -> data = data;
     this -> endereco = endereco;
@@ -22,6 +27,10 @@ double salario, string telefone, string designacao){
 }
 
 Funcionarios::~Funcionarios(){}
+
+string Funcionarios::getCodigo(){
+    return codigo;
+}
 
 string Funcionarios::getNome(){
     return nome;
@@ -53,8 +62,9 @@ void Funcionarios::Adicionar(){
 void Funcionarios::Excluir(){
 
 }
-void Funcionarios::Modificar(){
 
+void Funcionarios::Modificar(int numDesignacao){
+    
 }
 
 void Funcionarios::concederAumento(){
