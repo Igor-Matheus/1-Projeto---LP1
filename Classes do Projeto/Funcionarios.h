@@ -21,7 +21,7 @@ class Funcionarios{
         //Quais seriam virtuais ou virtuais puros?
         void Adicionar();
         void Excluir();
-        virtual void Modificar(int numDesignacao);
+        virtual void Modificar();
 
         string getCodigo();
         string getNome();

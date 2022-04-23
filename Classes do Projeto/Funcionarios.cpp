@@ -63,7 +63,7 @@ void Funcionarios::Excluir(){
 
 }
 
-void Funcionarios::Modificar(int numDesignacao){
+void Funcionarios::Modificar(){
     
 }
 

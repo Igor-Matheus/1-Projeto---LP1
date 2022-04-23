@@ -10,9 +10,10 @@ Operador::Operador(){
 
 Operador::~Operador(){}
 
-void Operador::Modificar(int numDesignacao){
+void Operador::Modificar(){
     string linhas[NUM_LINHAS];
     string flag[NUM_LINHAS];
+    string resposta;
     fstream arquivo;
 
     arquivo.open("Empresa.csv", ios::in);
@@ -24,16 +25,30 @@ void Operador::Modificar(int numDesignacao){
 
             //flag
             flag[i] = linhas[i];
+        }
+
+        cout << "========================================= Modificar ========================================" << endl;
+
+        cout << "O que deseja modificar? (codigo, nome, end, telefone, data de ingresso, designacao, salario)" << endl;
+        cin >> resposta;
+
+        /*
+        if (resposta == "designacao"){
+
+        }
+        */
+
+       cout << "Qual o código?" << endl;
+       cin >> codigo;
+
+        for (int i = 0; i < NUM_LINHAS; i++){
+            
+
+            
+            flag[i] = linhas[i];
 
             cout << linhas[i] << endl;
         }
-
-        //teste do flag ======================
-        cout << "\n\n";
-        for (int i = 0; i < NUM_LINHAS; i++){
-            cout << flag[i] << endl;
-        }
-        // ===================================
 
         arquivo.close();
 

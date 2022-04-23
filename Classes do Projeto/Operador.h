@@ -8,7 +8,7 @@ class Operador : public Funcionarios{
         Operador();
         virtual ~Operador();
 
-        void Modificar(int numDesignacao);
+        void Modificar();
         void concederAumento();
 
     private:
