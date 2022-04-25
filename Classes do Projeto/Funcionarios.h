@@ -1,9 +1,11 @@
 #ifndef FUNCIONARIOS_H
 #define FUNCIONARIOS_H
 
+#include <iostream>
 #include <string>
+#include <fstream>
 
-#define NUM_LINHAS 6
+#define NUM_LINHAS 100
 
 using namespace std;
 
@@ -19,10 +21,17 @@ class Funcionarios{
         virtual ~Funcionarios();
 
         //Quais seriam virtuais ou virtuais puros?
-        void Adicionar();
-        void Excluir();
-        virtual void Modificar();
+        void addFuncionario();
+        void criarArquivo();
+        void lerArquivo();
 
+        //Usando a API
+        string retornaEndereco(string cep);
+
+        //ou virtual void?
+        void modificarFuncionario();
+        void excluirFuncionario();
+        
         string getCodigo();
         string getNome();
         string getData();
@@ -41,6 +50,9 @@ class Funcionarios{
         void imprimeFolhaSalarialEmpresa();
 
     protected: //ou é melhor private?
+        fstream arquivo;
+        string linhas[NUM_LINHAS];
+
         string codigo;
         string nome;
         string data;
