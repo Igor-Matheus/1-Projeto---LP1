@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <fstream>
 #include "Funcionarios.h"
 
@@ -480,12 +481,66 @@ void Funcionarios::addFuncionario(){
         arquivo << linha[li];
     }
     arquivo.close();
-
 }
 
+/* ====================================== Modificar e Excluir funcionário =============================================*/
 
 void Funcionarios::excluirFuncionario(){
+    string cod, linha;
+    fstream file;
+    int cont = 0;
+    string linhas[NUM_LINHAS], escolha, teste;
 
+    file.open("Empresa - Copia.csv", ios::in);
+    
+    cin >> cod;
+    
+    teste = "EF";
+    
+    if (file.is_open()){
+        if (cod.find(teste) != string::npos && cod.size() == 5){
+
+            while(getline(file, linha)){
+
+                if (linha.find(cod) != string::npos){
+
+                    if ((linha.find("presidente") != string::npos) || (linha.find("diretor") != string::npos)){
+                        linhas[cont] = linha;
+                        cont++;
+                        cout << "Registro nao pode ser excluido." << endl;
+                    } else {
+                        cout << linha << endl;
+                        cout << "codigo encontrado\n";
+                        cout << "Deseja excluir o registro do Arquivo ?" <<"\n Digite sim ou nao" << endl;
+                        cin >> escolha;
+                        if (escolha == "nao"){
+                            linhas[cont] = linha;
+                            cont++;
+                        } else if (escolha == "sim"){
+                            cout << "O registro foi excluido." << endl;
+                        }
+                    }
+                } else {
+                    linhas[cont] = linha;
+                    cont++;
+                }
+            }
+
+        } else {
+            cout << "codigo nao encontrado\n";
+        }
+
+    } else {
+        cout << "arquivo nao foi aberto\n";
+    }
+
+    file.close();
+
+    file.open("Empresa - Copia.txt", ios::out);
+
+    for (int i = 0; i < cont; i++){
+        file << linhas[i] << endl;
+    }
 }
 
 void Funcionarios::modificarFuncionario(){
@@ -497,31 +552,113 @@ void Funcionarios::modificarFuncionario(){
     string linha, linhaParaModificar, modificacao; //a modificacao dependerá do que foi escolhido na resposta2
     */
 
-    typedef struct{
+    typedef struct {
         int dia;
         int mes;
         int ano;
-    } Data;
+    } tData;
 
-    Data data;
-
-    string nome, aux, codigo, cod, telefone, designacao, endereco, cep, numero, areaS[2], areaF[2], formacao;
-
-    string Nan("Nan"), logradouro, bairro, cidade, uf, linha[NUM_LINHAS], line, dia, mes, ano;
-
-    char yn;
-    int i, c, desig, li = 0;
-    float salario;
-    
-    criarArquivo();
-    lerArquivo();
+    tData data;
+    string cod, cep, desig, escolha, aux[NUM_LINHAS];
+    fstream file;
+    int cont = 0;
+    string linhaParaMod[NUM_LINHAS], linhaArquivo, modificacao, inicioCodigo;
 
     cout << "========================================= Modificar ========================================" << endl;
 
-    cout << "Qual o codigo?" << endl;
+    cout << "Qual o codigo do Funcionario?\n";
     cin >> cod;
+    inicioCodigo = "EF";
 
-   
+    cout << "\nQual a designacao desse funcionario? (Operador, Gerente, Diretor, Presidente)" << endl;
+    cin >> desig;
+
+    cout << "\nO que deseja modificar? (Codigo, Nome, Endereco, Telefone, Data, Designacao, Salario)" << endl;
+    cin >> escolha;
+
+    system("cls");    
+
+    if (escolha == "Codigo" || escolha == "codigo"){
+        /*
+        if (desig == "Gerente" || desig == "gerente"){
+
+        } else if (desig == "Diretor" || desig == "diretor"){
+
+        } else if (desig == "Presidente" || desig == "presidente"){
+
+        } else { */
+        cout << "================================= Modificar Codigo ===================================" << endl;
+        cout << "\n";
+
+        cout << "Digite o novo codigo (EFXXX): ";
+        cin >> modificacao;
+
+        file.open("Empresa - Copia.csv", ios::in);
+
+        if (file.is_open()){
+
+            if (cod.find(inicioCodigo) != string::npos && cod.size() == 5){
+
+                while(getline(file, linhaArquivo)){
+
+                    if (linhaArquivo.find(cod) != string::npos){
+
+                        cout << linhaArquivo << endl;
+                        cout << "codigo encontrado\n";
+                
+                        linhaParaMod[cont] = linhaArquivo;
+                        linhaParaMod[cont].erase(0, 5);
+
+                        cout << "Linha com codigo apagado: " << linhaParaMod[cont].erase(0, 5);
+
+                        aux[cont] = linhaParaMod[cont];
+
+                        linhaParaMod[cont] = modificacao + aux[cont];
+                        
+                        cout << linhaParaMod[cont] << endl;
+
+                        cont++;
+                    
+                    } else {
+                        aux[cont] = linhaArquivo[cont];
+                        cont++;
+                    }
+                }
+
+            } else {
+                cout << "codigo nao encontrado\n";
+            }
+
+        } else {
+            cout << "Nao foi possivel ler o arquivo" << endl;
+        }
+
+        file.close();
+
+        file.open("Empresa - Copia.txt", ios::out);
+
+        for (int i = 0; i < cont; i++){
+            file << linhaParaMod[i] << endl;
+        }
+
+        file.close();
+    }
+
+    /*
+    else if (escolha == "Nome" || escolha == "nome"){
+
+    } else if (escolha == "Endereco" || escolha == "endereco"){
+
+    } else if (escolha == "Telefone" || escolha == "telefone"){
+
+    } else if (escolha == "Data" || escolha == "data"){
+        
+    } else if (escolha == "Salario" || escolha == "salario"){
+        
+    } else if (escolha == "Designacao" || escolha == "designacao"){
+        
+    } */
+
 }
 
 void Funcionarios::concederAumento(){
