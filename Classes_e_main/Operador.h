@@ -1,14 +1,13 @@
 #ifndef OPERADOR_H
 #define OPERADOR_H
 
-#include "Funcionarios.h"
+#include "Funcionario.h"
 
-class Operador : public Funcionarios{
+class Operador : public Funcionario{
     public:
         Operador();
         virtual ~Operador();
 
-        void Modificar();
         void concederAumento();
 
     private:

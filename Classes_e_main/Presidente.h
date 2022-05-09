@@ -11,7 +11,6 @@ class Presidente : public Diretor{
         void concederAumento();
 
     protected:
-        string formacaoMaxima;
 };
 
 #endif

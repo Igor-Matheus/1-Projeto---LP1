@@ -8,7 +8,7 @@ class Gerente : public Operador{
         Gerente();
         ~Gerente();
 
-        void concederAumento();
+        void concederAumento(); 
 
     protected:
 };
