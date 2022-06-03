@@ -1,7 +1,14 @@
 #ifndef FUNCIONARIOS_H
 #define FUNCIONARIOS_H
 
-#include <iostream>
+/*
+#include "Presidente.h"
+#include "Operador.h"
+#include "Diretor.h"
+#include "Gerente.h"
+#include "GerenciaFuncionario.h"
+*/
+
 #include <string>
 #include <fstream>
 
@@ -30,7 +37,6 @@ class Funcionario{
         void colunas();
 
         /*======================================= Para as modificações ===============================================*/
-        //ou virtual void?
         void modificarFuncionario();
 
         void modificaCodigo(string cod);
@@ -49,6 +55,12 @@ class Funcionario{
         
         /*============================================================================================================*/
 
+        /*============================================= Para as buscas ===============================================*/
+        
+        
+        
+        /*============================================================================================================*/
+        
         void excluirFuncionario();
         
         virtual void concederAumento();
